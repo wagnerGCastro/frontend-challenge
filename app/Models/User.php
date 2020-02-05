@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Update the authenticated user's API token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function updateApiToken( $data )
+    {
+ 
+       DB::table('user')->where('id', $id )->update($data);
+    }
 }
