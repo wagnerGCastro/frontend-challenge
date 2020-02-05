@@ -7,20 +7,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
 
+                    <div class="alert alert-warning alert-dismissible message-success " role="alert">
+                        <span class="glyphicon glyphicon-info-sign"></span> <span class="reponse"></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <form  id="formLogin" class="form-horizontal">
+                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                <span class="help-block help-email">
+                                    <strong class="text-danger"></strong>
+                                </span>
                             </div>
                         </div>
 
@@ -28,16 +32,14 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                <input id="password" type="password" class="form-control" name="password" >
+                                <span class="help-block help-password">
+                                    <strong class="text-danger"></strong>
+                                </span>
                             </div>
                         </div>
-
+'
+                        <!--
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
@@ -46,7 +48,8 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>'
+                    -->
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
@@ -54,9 +57,9 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>
