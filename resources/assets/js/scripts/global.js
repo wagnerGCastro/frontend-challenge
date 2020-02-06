@@ -32,6 +32,11 @@
 
         var color_variation = $("input[name='color_variation']");
         var colorVariationInputs = $('.colorVariationInputs');
+
+
+        if ($('.click-false').length) {
+           $('.click-false').click(function() {return false;});
+        }
          
         if ( $("input[name='color_variation']:checked").val() == 'N' ) {
             colorVariationInputs.css("display", "none");

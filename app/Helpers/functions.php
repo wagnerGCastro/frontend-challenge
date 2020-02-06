@@ -49,12 +49,13 @@ if(!function_exists('formatNumToMysql')) {
      * 
      * @link https://pt.stackoverflow.com/questions/349990/formatar-valor-do-real-br-para-decimal10-2-do-mysql
      * 
+     * @param  float $real
+     * @param  float $casasDecimais
      * @return float
      *
      */
     function formatNumToMysql($real, $casasDecimais = 2) 
     {
-
         // Se já estiver no formato USD, retorna como float e formatado
         if(preg_match('/^\d+\.{1}\d+$/', $real)) {
             return (float) number_format($real, $casasDecimais, '.', '');
@@ -92,16 +93,16 @@ if(!function_exists('formatMessage')) {
     }
 }
 
-if(!function_exists('getcURrequest')) {
+if(!function_exists('getCurlRequest')) {
     /**
-     * Get cURL request GET
+     * cURL request GET
      * 
      * @param url $url
      * @param string $token
-     * @return array
+     * @return array json
      *
      */
-    function getcURrequest($url, $token)
+    function getCurlRequest($url, $token)
     {
         $authorization = "Authorization: Bearer $token";
         $ch   = curl_init();
@@ -111,20 +112,20 @@ if(!function_exists('getcURrequest')) {
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
         curl_setopt($ch, CURLOPT_POST, FALSE);
         
-       return checkcCurlRequest($ch);
+       return checkCurlRequest($ch);
     }
 }
 
-if(!function_exists('postcURrequest')) {
+if(!function_exists('postCurlRequest')) {
     /**
-     * Get cURL request GET
+     * cURL request POST
      * 
      * @param url $url
      * @param string $token
-     * @return array
+     * @return array json
      *
      */
-    function postcURrequest($url, $token, $data)
+    function postCurlRequest($url, $token, $data)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -140,19 +141,19 @@ if(!function_exists('postcURrequest')) {
             "Authorization:     Bearer ". $token,
         )); 
 
-        return  checkcCurlRequest($ch);
+        return  checkCurlRequest($ch);
     }
 }
 
 if(!function_exists('deleteCurlRequest')) {
     /**
-     * DELETE cURL request  
+     * cURL request DELETE 
      * 
-     * https://tonyspiro.com/curl-get-post-put-and-delete-using-php/
+     * @link https://tonyspiro.com/curl-get-post-put-and-delete-using-php/
      * 
      * @param url $url
      * @param string $token
-     * @return array
+     * @return string $data_string
      *
      */
     function deleteCurlRequest($url, $token, $data_string = false)
@@ -169,13 +170,13 @@ if(!function_exists('deleteCurlRequest')) {
             'Authorization: Bearer '. $token,                                                   
         ));                                                                                                                   
          
-        return  checkcCurlRequest($ch);
+        return  checkCurlRequest($ch);
     }
 }
 
 if(!function_exists('putCurlRequest')) {
     /**
-     * putCurlRequest cURL request  PUT
+     * cURL request  PUT
      * 
      * https://tonyspiro.com/curl-get-post-put-and-delete-using-php/
      * 
@@ -198,24 +199,29 @@ if(!function_exists('putCurlRequest')) {
             'Authorization: Bearer '. $token, 
         ));                                                                                                                   
          
-        return checkcCurlRequest($ch);
+        return checkCurlRequest($ch);
     }
 }
 
-if(!function_exists('checkcCurlRequest')) {
+if(!function_exists('checkCurlRequest')) {
     /**
-     * checkcCurlRequest cURL request  status code
+     * Check cURL request  status code
      * 
      * https://tonyspiro.com/curl-get-post-put-and-delete-using-php/
      * 
-     * @param url $url
-     * @param string $token
-     * @return array
+     * @param object $ch 
+     * @return string or json
      *
      */
-    function checkcCurlRequest($ch) 
+    function checkCurlRequest($ch) 
     {
-       $result = curl_exec($ch);
+        //# Resolve error operation timed-out
+        //# https://stackoverflow.com/questions/21501159/curl-error-operation-timed-out
+        @set_time_limit(0);
+        curl_setopt($ch, CURLOPT_TIMEOUT,5000); // 5000 seconds
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+
+        $result = curl_exec($ch);
 
         /** Verifica se houve erros e exibe a mensagem de erro */
         if($errno = curl_errno($ch)) {
