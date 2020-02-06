@@ -20,7 +20,7 @@ class ProductController extends Controller
         $url    =  "{$this->baseUrlAPI}/api/v1/product";
         
         // All products
-        $resp = getcURrequest($url, $token);
+        $resp = getCurlRequest($url, $token);
 
         return view('/product/index', compact('resp'));
     }
@@ -64,7 +64,7 @@ class ProductController extends Controller
         $url    =  "{$this->baseUrlAPI}/api/v1/product";
 
         // cURl Post API
-        $result =  postcURrequest($url,  $token,  $filtered );
+        $result =  postCurlRequest($url,  $token,  $filtered );
 
         // 400 -> Erros Validations Client
         if ($result->code == '201'):
@@ -87,7 +87,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function edit($id) 
     {
          $attrib = (object) [
             'title'     => 'Edit product', 
@@ -97,19 +97,18 @@ class ProductController extends Controller
             'method'    => "PUT",
         ];
 
-         // Checks if parameter was passed with $id of type Integer
+        // Checks if parameter was passed with $id of type Integer
         if( $response = $this->checkParamId($id) ) { return $response; };
-
 
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
         $url    =  "{$this->baseUrlAPI}/api/v1/product/{$id}";
         
-        // All products
-        $result =  getcURrequest($url, $token);
+        // cURl GET API - return all products
+        $result =  getCurlRequest($url, $token);
 
-        // Status Code
+        // Check Status Code
         if ( isset($result->code)  ){
 
             if ($result->code == '400'):
@@ -126,19 +125,23 @@ class ProductController extends Controller
            return response()->view('/errors/500', [], 500); 
         }
          
-        return view('/product/edit', ['prod' => $result, 'attrib' => $attrib]);
+        return view('/product/create', ['prod' => $result, 'attrib' => $attrib]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  id $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        // Checks if parameter was passed with $id of type Integer
+        if( $response = $this->checkParamId($id) ) { return $response; };
+
         $filtered = array_except( $request->all(), ['_token','_method']);
+
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
@@ -148,13 +151,14 @@ class ProductController extends Controller
         if( $response = $this->checkParamId($id) ) { return $response; };
 
         if($request->color_variation== 'N'):
-            $filtered = array_except( $request->all(), ['color_name','color_hexa','_token','_method']);
+            $filtered = array_except( $filtered , ['color_name','color_hexa']);
         endif;
 
-       $result =  putCurlRequest($url, $token, json_encode($filtered));
+        // Request cURL PUT
+        $result =  putCurlRequest($url, $token, json_encode($filtered));
 
-        // Upadte resource
-        if ($result->code == '201'):
+        // 200 -> Success update
+        if ($result->code == '200'):
             \Session::flash('message.success',"Product {$request->input('name')} was updated");
             return redirect()->route('product.index');
 
@@ -166,7 +170,7 @@ class ProductController extends Controller
             foreach ($result->message as $key => $value) {
                  $error[] = $value;
             }
-            return redirect()->back()->withErrors($error)->withInput();
+            return redirect()->route('product.edit', $id)->withErrors($error)->withInput();
         endif;
     }
 
@@ -190,6 +194,7 @@ class ProductController extends Controller
         $token  =  $user->api_token;
         $url    =  "{$this->baseUrlAPI}/api/v1/product/{$id}";
 
+        // Request cURL DELETE
         $result =  deleteCurlRequest($url, $token);
 
         /** Status Code */
@@ -205,7 +210,7 @@ class ProductController extends Controller
     }
 
     /**
-    * checkParamId if id exists
+    * Check if $id parameter exists
     *
     * @param  $id)
     * @return \Illuminate\Http\Response

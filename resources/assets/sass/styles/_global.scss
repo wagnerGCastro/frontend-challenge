@@ -1,7 +1,17 @@
 // Form Register
 
 //.help-email { display: none;}
-//
+
+.input-type-color {
+    border: 0px solid #ccc;
+    padding: 0px;
+    width: 100%;
+    outline:none;
+    &:focus {
+        outline:none;
+    }
+}
+
 .message-success { display: none; }
 
 .form-horizontal.form-table{
