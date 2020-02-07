@@ -34,7 +34,6 @@
     width: 100% !important;
 }
 
-
 .panel-default > .panel-heading {
     color: #333333c7;
     background-color: rgba(123, 105, 105, 0.0784313725490196);
@@ -63,68 +62,78 @@
 }
 
 
-.table-response {
-    margin-top: 20px;
-} 
-
-.dataTables_filter {
-    margin-bottom: 20px;
-
-    .dataTables_filter input {
-        padding: 5px;
-        border: 2px solid #ededed !important;
-    }
-
-}
-
-.dataTables_paginate paging {
-    margin-top: 15px;
-}
-
-
-.table-response button.dt-button {
-    background: none;
-    border: 0;
-}
-
 .table { 
     visibility: hidden;
 }
 
-#tabProduct {
-    margin-bottom: 15px ;
 
-    td:nth-of-type(3), td:nth-of-type(4), th:last-child, {
-        white-space: nowrap !important;
-    }
+
+
+#tabProduct {
+
+    //margin-bottom: 15px ;
+
+    // td:nth-of-type(3), td:nth-of-type(4), th:last-child, {
+    //     white-space: nowrap !important;
+    // }
     
 
-    th:last-child:after{
-        font-size:0 !important;
-        content: none !important;
-        color: transparent !important;
-    }
+    // th:last-child:after{
+    //     font-size:0 !important;
+    //     content: none !important;
+    //     color: transparent !important;
+    // }
 
-    td:nth-of-type(1) {
-       min-width: 200px;
-    }
-    td:nth-of-type(2) {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2; /* number of lines to show */
-        -webkit-box-orient: vertical;
-         display: -webkit-box;
-    }
+    // td:nth-of-type(1) {
+    //    min-width: 200px;
+    // }
+    // td:nth-of-type(2) {
+    //     overflow: hidden;
+    //     text-overflow: ellipsis;
+    //     -webkit-line-clamp: 2; /* number of lines to show */
+    //     -webkit-box-orient: vertical;
+    //      display: -webkit-box;
+    // }
 
-    td:last-child {
-        white-space: nowrap !important;
-    }
+    // td:last-child {
+    //     white-space: nowrap !important;
+    // }
    
 }   
 
-.table > tbody > tr > td {
-     border-top: 0px solid #ddd !important;
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, 
+.table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.6;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
 }
+
+.table-tabProduct {
+
+
+    .btn-group > .btn:first-child {
+        margin-left: -15px;
+    }
+    
+    .dt-buttons.btn-group  {
+
+        .btn-default {
+            // color: #fff;
+            // background-color: #fff;
+            border-color: #fff;
+
+            &:hover {
+                // color: #fff !important; 
+                background-color: #fff !important; 
+                border-color: #fff !important;
+            }
+        }
+    }
+    
+}
+
+
 
 .alert.alert-msg {
     padding: 8px 10px !important;
@@ -155,20 +164,20 @@
 
 
 // Table modal detalhes
-div.dtr-bs-modal table.table tr td:first-child {
-  //min-width: 106px;
-}
-div.dtr-bs-modal table.table tr td {
-  padding: 0px 0 10px 0px;
-}
+// div.dtr-bs-modal table.table tr td:first-child {
+//   //min-width: 106px;
+// }
+// div.dtr-bs-modal table.table tr td {
+//   padding: 0px 0 10px 0px;
+// }
 
-.table-efect-show  {
-    position: relative;
+// .table-efect-show  {
+//     position: relative;
    
-    .table {
-        visibility:hidden;
-    }
-}
+//     .table {
+//         visibility:hidden;
+//     }
+// }
 
 .navbar-inverse {
     background-color: #6babff;
@@ -192,16 +201,17 @@ img.logo {
     position: absolute;
     top: 48%;
     left: 48%;
-    border: 8px solid #f3f3f3;
+    border: 6px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 8px solid #ccc;
-    border-right: 8px solid #ccc;
-    border-bottom: 8px solid #ccc;
+    border-top: 6px solid #ccc;
+    border-right: 6px solid #ccc;
+    border-bottom: 6px solid #ccc;
     width: 40px;
     height: 40px;
-    -webkit-animation: spin-1 2s linear infinite;
-    animation: spin-1 2s linear infinite;
+    -webkit-animation: spin-1 .8s linear infinite;
+    animation: spin-1 .8s linear infinite;
 }
+
 
 @-webkit-keyframes spin-1 {
   0% { -webkit-transform: rotate(0deg); }
@@ -214,8 +224,51 @@ img.logo {
 }
 
 
+
+
+
+.navbar-inverse .navbar-toggle {
+    border-color: #fff;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #fafdff61;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #f1f1f1;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #a2a2a200;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #1a7cfd;
+}
+
+
+
 @media (min-width: 768px) {
     div.dataTables_wrapper div.dataTables_filter input {
-        min-width: 350px;
+        min-width: 262px;
     }
+}
+
+
+@media (max-width: 500px) {
+
+    .table-tabProduct {
+        .btn-group > .btn:first-child {
+            margin-left: 0px;
+        }
+
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            width: 100%;
+        }
+        div.dataTables_wrapper div.dataTables_filter label {
+            margin-left: -15px;
+        }
+    }
+    
 }
