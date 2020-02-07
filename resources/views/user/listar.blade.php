@@ -9,7 +9,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">List of users</div>
                             <div class="panel-body">
-                                <table class="table table-bordered table-hover" id="tablUser">
+                                <div class="loader-1 "></div>
+                                <table class="table table-bordered table-hover dt-responsive display  nowrap" id="tablUser" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>

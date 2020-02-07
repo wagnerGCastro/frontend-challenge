@@ -13,8 +13,10 @@
                              <!-- Succes Messages -->
                             @include( 'partials/alerts/alerts-messages' )
 
-                            <div class="table-response" >
-                                <table class="table table-striped table-bordered" id="tabProduct">
+                            <div class="table-tabProduct" >
+                                <div class="loader-1 "></div>
+
+                                <table class="table table-striped table-bordered dt-responsive display  nowrap" id="tabProduct"  style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>

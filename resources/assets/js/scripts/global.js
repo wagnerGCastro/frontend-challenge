@@ -34,6 +34,19 @@
         var colorVariationInputs = $('.colorVariationInputs');
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | Vanilla Masker
+        |--------------------------------------------------------------------------
+        | 
+        | Mascaras  
+        | 
+        | https://github.com/vanilla-masker/vanilla-masker
+        | Demo page: https://vanilla-masker.github.io/vanilla-masker/demo.html
+        */
+         if ($('.money').length) { VMasker($('.money')).maskMoney(); }
+
+
         if ($('.click-false').length) {
            $('.click-false').click(function() {return false;});
         }
@@ -189,6 +202,7 @@
 
         var tabProduct = $('#tabProduct').dataTable({
             dom:                     'Bfrtip',
+
             buttons:                 
             [
                 {
@@ -201,7 +215,6 @@
                     'titleAttr':     'Expotar para csv CSV'
                 }
             ]
-
         });
 
 
@@ -210,6 +223,7 @@
     /**  Fires in document when all elements are loaded  (Jquery > 3.0) */
     $( window ).on("load", function() {
         $('.table').css('visibility','visible');
+        $('.loader-1').fadeOut();
     });
 
     /**  Fires on document when visible on screen */
