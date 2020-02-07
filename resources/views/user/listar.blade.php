@@ -18,7 +18,6 @@
                                             <th>Email</th>
                                             <th>Created</th>
                                              <th>Updated</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
