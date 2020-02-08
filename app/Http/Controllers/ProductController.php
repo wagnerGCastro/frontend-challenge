@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-       $this->baseUrlAPI = getenv('APP_API_URL');
+       $this->baseUrlAPI = (!empty(getenv('APP_API_URL'))) ? getenv('APP_API_URL') : config('app.api_url'); 
     }
 
      public function index()
