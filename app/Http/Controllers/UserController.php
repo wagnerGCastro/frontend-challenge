@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Controllers\ApiTokenControlle; 
@@ -14,11 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
-     * Table user
+     * Base URL API
      *
      * @var string
      */
-    protected $userModel ;
+     private $baseUrlAPI;
+
 
     /**
      * Create a new controller instance.
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-       $userModel = new User;
+       $this->baseUrlAPI = getenv('APP_API_URL');
     }
 
      /**
@@ -39,19 +39,12 @@ class UserController extends Controller
     {
         // User session
         $user = (object) session()->get('user');
-        $authorization = "Authorization: Bearer $user->api_token";
-        $url  = 'http://localhost:8007/api/v1/user';
-        $ch   = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization )); 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-        curl_setopt($ch, CURLOPT_POST, FALSE);
-        $users = json_decode(curl_exec($ch));
-        $error = curl_error($ch);
-        curl_close($ch);
+        $url  =  $this->baseUrlAPI . '/v1/user';
 
-        if( !empty($error) ) { echo $error;  die;}
+        // Get All Users
+        $users = getCurlRequest($url, $user->api_token);
+
+        // if( !empty($error) ) { echo $error;  die;}
 
         if (isset( $users->code )) {
             if(  $users->code == '403') {
@@ -59,8 +52,6 @@ class UserController extends Controller
                 return view('/partials/alerts/danger');
             }
         }
-
-        
 
         return view('/user/listar', compact('users'));
     }
@@ -71,10 +62,9 @@ class UserController extends Controller
      * @return Response
      */
     public function login(Request $request)
-    {
-
+    {   
         $apiUrl = $request->apiUrl;
-        
+
         //Rules 
         $rules = [ 'email' => 'required', 'password' => 'required', 'apiUrl' => 'required'];
 

@@ -36,7 +36,7 @@ Route::group(['middleware' => ['check.user']], function() {
     Route::get('/product/create','ProductController@create')->name('product.create');
     Route::post('/product/create','ProductController@store')->name('product.store');
     Route::get('/product/edit','ProductController@edit')->name('product.edit');
-    Route::get('/product/edit/{id}','ProductController@show')->name('product.show');
+    Route::get('/product/edit/{id}','ProductController@edit')->name('product.edit');
     Route::put('/product/update/{id}','ProductController@update')->name('product.update');
     Route::delete('/product/delete/{id}','ProductController@destroy')->name('product.destroy');
 });

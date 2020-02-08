@@ -6,7 +6,6 @@
         var flashlogin = window.localStorage.getItem('flashMessage') ? window.localStorage.getItem('flashMessage') : '' ;
 
         // Routes API
-        const baseUrlAPI = 'http://localhost:8007/api';
         const route = {
             login:    baseUrlAPI+'/auth/login',
             logout:   baseUrlAPI+'/auth/logout',
@@ -32,6 +31,24 @@
 
         var color_variation = $("input[name='color_variation']");
         var colorVariationInputs = $('.colorVariationInputs');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Vanilla Masker
+        |--------------------------------------------------------------------------
+        | 
+        | Mascaras  
+        | 
+        | https://github.com/vanilla-masker/vanilla-masker
+        | Demo page: https://vanilla-masker.github.io/vanilla-masker/demo.html
+        */
+         
+         if ($('.money').length) { VMasker($('.money')).maskMoney({separator: '.'}); }
+
+
+        if ($('.click-false').length) {
+           $('.click-false').click(function() {return false;});
+        }
          
         if ( $("input[name='color_variation']:checked").val() == 'N' ) {
             colorVariationInputs.css("display", "none");
@@ -46,7 +63,7 @@
         });
        
         if( flashlogin.length ) {
-            //console.log(flashlogin);
+            console.log(flashlogin);
             var flash =JSON.parse(Base64.decode( flashlogin ));
             
             if (window.location.href == route_site.login) {
@@ -184,6 +201,7 @@
 
         var tabProduct = $('#tabProduct').dataTable({
             dom:                     'Bfrtip',
+
             buttons:                 
             [
                 {
@@ -196,7 +214,6 @@
                     'titleAttr':     'Expotar para csv CSV'
                 }
             ]
-
         });
 
 
@@ -205,6 +222,7 @@
     /**  Fires in document when all elements are loaded  (Jquery > 3.0) */
     $( window ).on("load", function() {
         $('.table').css('visibility','visible');
+        $('.loader-1').fadeOut();
     });
 
     /**  Fires on document when visible on screen */

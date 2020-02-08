@@ -13,8 +13,10 @@
                              <!-- Succes Messages -->
                             @include( 'partials/alerts/alerts-messages' )
 
-                            <div class="table-response" >
-                                <table class="table table-striped table-bordered" id="tabProduct">
+                            <div class="table-tabProduct" >
+                                <div class="loader-1 "></div>
+
+                                <table class="table table-striped table-bordered dt-responsive display  nowrap" id="tabProduct"  style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -34,9 +36,13 @@
                                                 <td>{{ $p->name }}</td>
                                                 <td>{{ $p->price }}</td>
                                                 <td>{{ $p->description }}</td>
-                                                <td>{{ $p->color_variation }}</td>
-                                                <td>{{ $p->color_hexa }}</td>
-                                                <td>{{ $p->color_name }}</td>
+                                                <td>{{ ($p->color_variation == 'Y' ? 'active'  : 'inactive') }}</td>
+                                                <td>
+                                                    @if($p->color_variation == 'Y')
+                                                         <input class="click-false input-type-color" type="color" value="{{ $p->color_hexa }}">
+                                                    @endif
+                                                </td>
+                                                <td>{{ ($p->color_variation == 'Y' ? $p->color_name  : '') }}</td> 
                                                 <td align="center" class="acoes">
                                                     <a href="/product/edit/{{ $p->id_product }}" title="Editar">
                                                         <span class="glyphicon glyphicon-pencil"></span>

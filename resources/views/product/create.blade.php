@@ -19,27 +19,29 @@
                                         <td colspan="1">
                                             <form  class="form-horizontal form-table" method="POST" action="{{( isset($attrib->param) ? route($attrib->route, $attrib->param) : route($attrib->route) )}}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="id_prodcolor" value="{{ isset($prod->id_prodcolor) ? $prod->id_prodcolor : ''  }}">
                                                {{  (isset($attrib->method) ? method_field($attrib->method) : '' )  }}
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Name</label>  
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="name" name="name" placeholder="" class="form-control" required="true" value="@if(count(get_object_vars($prod)) > 0) {{ $prod->name }} @elseif(old('name')) {{  old('name') }} @endif" type="text"></div>
+                                                            <div class="input-group"><input id="name" name="name" placeholder="" class="form-control" required="true" value="{{( old('name') !== null) ? old('name') : ( isset( $prod->name ) ? $prod->name : '' )}}" type="text"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Price</label>
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="price" name="price" placeholder="" class="form-control" required="true" value="@if(count(get_object_vars($prod)) > 0) {{ $prod->price }} @elseif(old('price')) {{  old('price') }} @endif" type="text"></div>
+                                                            <div class="input-group"><input id="price" name="price" placeholder="" class="form-control money" required="true" value="{{( old('price') !== null) ? old('price') : ( isset( $prod->price ) ? $prod->price : '' )}}" type="text"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Description</label>
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="description" name="description" placeholder="" class="form-control" required="true" value="@if(count(get_object_vars($prod)) > 0) {{ $prod->description }} @elseif(old('description')) {{  old('description') }} @endif" type="text"></div>
+                                                            <div class="input-group"><input id="description" name="description" placeholder="" class="form-control" required="true" value="{{( old('description') !== null) ? old('description') : ( isset( $prod->description ) ? $prod->description : '' )}}" type="text"></div>
                                                         </div>
                                                     </div>
-                                            
+
+                                        
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Color variation</label>
                                                         <div class="col-md-7 inputGroupContainer">
