@@ -254,7 +254,6 @@
         var flashlogin = window.localStorage.getItem('flashMessage') ? window.localStorage.getItem('flashMessage') : '' ;
 
         // Routes API
-        const baseUrlAPI = 'http://localhost:8007/api';
         const route = {
             login:    baseUrlAPI+'/auth/login',
             logout:   baseUrlAPI+'/auth/logout',
@@ -281,7 +280,6 @@
         var color_variation = $("input[name='color_variation']");
         var colorVariationInputs = $('.colorVariationInputs');
 
-
         /*
         |--------------------------------------------------------------------------
         | Vanilla Masker
@@ -292,7 +290,8 @@
         | https://github.com/vanilla-masker/vanilla-masker
         | Demo page: https://vanilla-masker.github.io/vanilla-masker/demo.html
         */
-         if ($('.money').length) { VMasker($('.money')).maskMoney(); }
+         
+         if ($('.money').length) { VMasker($('.money')).maskMoney({separator: '.'}); }
 
 
         if ($('.click-false').length) {
@@ -312,7 +311,7 @@
         });
        
         if( flashlogin.length ) {
-            //console.log(flashlogin);
+            console.log(flashlogin);
             var flash =JSON.parse(Base64.decode( flashlogin ));
             
             if (window.location.href == route_site.login) {

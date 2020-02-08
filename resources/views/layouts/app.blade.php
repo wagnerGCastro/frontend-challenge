@@ -130,8 +130,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.js"></script>
     <script>
+        // BASE URL API 
+        const baseUrlAPI = "{{ !empty( getenv('APP_API_URL') ) ? getenv('APP_API_URL') : Config::get('app.api_url') }}";
 
-        // Rotas Site
+        // ROUTES SITE APP
         const route_site = {
             'login':            "{{ route('login') }}",
             'user_login':       "{{ route('user.login') }}",
@@ -140,7 +142,6 @@
             'product_create':   "{{ route('product.create') }}",
         } 
     </script>
-
     <script src="{{ asset('js/scripts-all.js') }}"></script>
 </body>
 </html>

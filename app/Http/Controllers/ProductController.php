@@ -9,15 +9,29 @@ use App\Http\Requests\ProductFormRequest;
 
 class ProductController extends Controller
 {
+    /**
+     * Base URL API
+     *
+     * @var string
+     */
+     private $baseUrlAPI;
 
-    private $baseUrlAPI = "http://localhost:8007";
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+       $this->baseUrlAPI = getenv('APP_API_URL');
+    }
 
      public function index()
     {
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/api/v1/product";
+        $url    =  "{$this->baseUrlAPI}/v1/product";
         
         // All products
         $resp = getCurlRequest($url, $token);
@@ -61,7 +75,7 @@ class ProductController extends Controller
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/api/v1/product";
+        $url    =  "{$this->baseUrlAPI}/v1/product";
 
         // cURl Post API
         $result =  postCurlRequest($url,  $token,  $filtered );
@@ -103,7 +117,7 @@ class ProductController extends Controller
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/api/v1/product/{$id}";
+        $url    =  "{$this->baseUrlAPI}/v1/product/{$id}";
         
         // cURl GET API - return all products
         $result =  getCurlRequest($url, $token);
@@ -145,7 +159,7 @@ class ProductController extends Controller
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/api/v1/product/{$id}";
+        $url    =  "{$this->baseUrlAPI}/v1/product/{$id}";
 
         // Checks if parameter was passed with $id of type Integer
         if( $response = $this->checkParamId($id) ) { return $response; };
@@ -192,7 +206,7 @@ class ProductController extends Controller
         // User session
         $user   =  (object) session()->get('user');
         $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/api/v1/product/{$id}";
+        $url    =  "{$this->baseUrlAPI}/v1/product/{$id}";
 
         // Request cURL DELETE
         $result =  deleteCurlRequest($url, $token);
