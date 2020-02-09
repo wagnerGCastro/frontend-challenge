@@ -10,28 +10,30 @@
                         <div class="panel-heading">List of users</div>
                             <div class="panel-body">
                                 <div class="loader-1 "></div>
-                                <table class="table table-bordered table-hover dt-responsive display  nowrap" id="tablUser" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Created</th>
-                                             <th>Updated</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       @foreach( $users as $u )
+                                <div class="table-hidden">
+                                    <table class="table table-bordered table-hover dt-responsive display nowrap table-hidden" id="tablUser" style="width:100%">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">{{ $u->id }}</th>
-                                                <td>{{ $u->name }}</td>
-                                                <td>{{ $u->email }}</td>
-                                                <td>{{ $u->created_at }}</td>
-                                                <td>{{ $u->updated_at }}</td>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Created</th>
+                                                 <th>Updated</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                           @foreach( $users as $u )
+                                                <tr>
+                                                    <th scope="row">{{ $u->id }}</th>
+                                                    <td>{{ $u->name }}</td>
+                                                    <td>{{ $u->email }}</td>
+                                                    <td>{{ $u->created_at }}</td>
+                                                    <td>{{ $u->updated_at }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

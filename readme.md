@@ -19,5 +19,9 @@
 12. Faça login, entre na home e depois navegue no menu `product` para realizar cadastros.
 13. Pronto agora é só testar a API, lembrando que as operações são autenticadas por token JWT da API Produto.
 
-![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/list-prod.png)
-![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/create.png)
+#
+![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/1-home.png?v=1.0)
+#
+![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/2-product-list.png?v=1.0)
+#
+![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/3-product-create.png?v=1.0)
