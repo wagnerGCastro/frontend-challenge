@@ -205,12 +205,12 @@
             buttons:                 
             [
                 {
-                    'text':         '<button type="button" class=""><span class="glyphicon glyphicon-plus-sign"></span> Create product</button>',
+                    'text':         '<a class="btn btn-secondary"><span class="glyphicon glyphicon-plus-sign"></span> Create product</a>',
                     'titleAttr':    'Criar evento',
                     'action':        function(){window.location.href = route_site.product_create;}
                 }, {
                     'extend':        'csvHtml5',
-                    'text':          '<button type="button" class=""><span class="glyphicon glyphicon-save"></span> Expotar para csv</button>',
+                    'text':          '<a class="btn btn-defautl"><span class="glyphicon glyphicon-save"></span> Expotar para csv</a>',
                     'titleAttr':     'Expotar para csv CSV'
                 }
             ]
@@ -221,8 +221,10 @@
 
     /**  Fires in document when all elements are loaded  (Jquery > 3.0) */
     $( window ).on("load", function() {
-        $('.table').css('visibility','visible');
-        $('.loader-1').fadeOut();
+       
+        $('.loader-1').fadeOut('slow', function() {
+             $('.table-hidden').css('visibility','visible');
+        });
     });
 
     /**  Fires on document when visible on screen */
