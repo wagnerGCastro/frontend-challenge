@@ -2,33 +2,49 @@
 /** 01 -  NAV BAR 
 -------------------------------------------------------------*/
 .navbar.navbar-modify-top {
-    .navbar-brand {
-        margin-left: -15px;
-        margin-top: -4px;
+    .ra-container-top { 
+
+        .ra-navbar-header {
+            .navbar-toggle {
+                margin-top: 19px;
+            }
+
+            .navbar-brand {
+                height: auto;
+               padding: 10px 15px 10px 15px;
+            }
+        }
+
+        .nav-bar-left-primary > li > a {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        .nav-bar-right {
+            padding-top: 0px;
+            padding-bottom: 0px;
+
+            > li {
+
+               > a {
+                    padding-top: 11px;
+                    padding-bottom: 11px;
+                }
+               > a.item {
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                }
+            }
+        }
     }
-
-    .nav-bar-left-primary > li > a {
-        padding-top: 25px !important;
-        padding-bottom: 25px !important;
-    }
-
-    .nav-bar-right > li > a {
-        padding-top: 12px !important;
-        padding-bottom: 10px !important;
-    }
-
-    img.logo { width: 140px;}
-
-    img.avatar {
-        width: 50px !important;
-    }
-
+    
 }
 
-.navbar.navbar-modify-top .nav-bar-right > li > a.item {
-    padding-top: 22px !important;
-    padding-bottom: 22px !important;
+img.avatar {
+    width: 50px !important;
 }
+
+
 
 /** 07 - FORMS 
 -------------------------------------------------------------*/
@@ -105,7 +121,6 @@
         padding: 5px;
         border: 1px solid #3097d1 !important;
     }
-
 }   
 
 .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, 
@@ -115,8 +130,6 @@
     vertical-align: top;
     border-top: 0px solid #ddd;
 }
-
-
 
 .alert.alert-msg {
     padding: 8px 10px ;
@@ -204,6 +217,7 @@
             line-height: inherit;
             width: 100%;
         }
+
         div.dataTables_wrapper div.dataTables_filter label {
             margin-left: -15px;
         }
@@ -211,18 +225,36 @@
     
 }
 
-@media (min-width: 768px) { 
-    .navbar-right {
-        margin-right: 0px;
-    }
-}
 @media (max-width: 768px) {
-    .navbar.navbar-modify-top .navbar-brand {
-        margin-left: -5px;
-        margin-top: -15px;
+
+    #app-navbar-collapse {
+        background: #f5f3f3;
     }
-    .navbar-header {
-        padding-top: 9px;
-        padding-bottom: 9px;
+
+    .navbar.navbar-modify-top {
+        .ra-container-top {
+            .nav-bar-left-primary {
+                margin-top: 0;
+
+                li a {
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                }
+            }
+
+            .nav-bar-right {
+                padding-top: 0px;
+                padding-bottom: 0px;
+
+                > li {
+
+                   > a.item {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+        }
     }
 }
+

@@ -34,8 +34,8 @@
 <body>
     <div id="app">
         <nav id="" class="navbar navbar-default navbar-static-top navbar navbar-modify-top">
-            <div class="container">
-                <div class="navbar-header">
+            <div class="container ra-container-top">
+                <div class="navbar-header ra-navbar-header">
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
