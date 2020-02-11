@@ -1,9 +1,8 @@
 
-/** 01 -  NAV BAR 
+/** 01 -  NAV BAR
 -------------------------------------------------------------*/
 .navbar.navbar-modify-top {
-    .ra-container-top { 
-
+    .ra-container-top {
         .ra-navbar-header {
             .navbar-toggle {
                 margin-top: 19px;
@@ -37,7 +36,7 @@
             }
         }
     }
-    
+
 }
 
 img.avatar {
@@ -46,7 +45,7 @@ img.avatar {
 
 
 
-/** 07 - FORMS 
+/** 07 - FORMS
 -------------------------------------------------------------*/
 .input-type-color {
     border: 0px solid #ccc;
@@ -69,7 +68,7 @@ img.avatar {
         }
     }
     .input-group {
-         display: inline; 
+         display: inline;
     }
 
     td {
@@ -110,7 +109,7 @@ img.avatar {
 
 /** 07 - TABLES
 -------------------------------------------------------------*/
-.table-hidden  {  
+.table-hidden  {
     visibility: hidden;
 }
 
@@ -121,9 +120,9 @@ img.avatar {
         padding: 5px;
         border: 1px solid #3097d1 !important;
     }
-}   
+}
 
-.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, 
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th,
 .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
     padding: 8px;
     line-height: 1.6;
@@ -222,7 +221,7 @@ img.avatar {
             margin-left: -15px;
         }
     }
-    
+
 }
 
 @media (max-width: 768px) {

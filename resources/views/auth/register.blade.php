@@ -18,7 +18,7 @@
                     <form id="formRegister" class="form-horizontal">
 
                          {{ csrf_field() }}
-                        
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -54,7 +54,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-login-register">
                                     Register
                                 </button>
                             </div>

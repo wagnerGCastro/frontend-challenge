@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/site.css": "/css/site.css",
+    "/resources/assets/js/scripts/global.es5.js": "/resources/assets/js/scripts/global.es5.js",
     "/js/scripts-all.js": "/js/scripts-all.js",
     "/css/styles-all.css": "/css/styles-all.css"
 }
