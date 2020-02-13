@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 
 .env
+
+resources/assets/js/scripts/global\.es5\.js
