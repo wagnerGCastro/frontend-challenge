@@ -20,7 +20,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="please enter a valid email" autofocus required/>
 
                                 <span class="help-block help-email">
                                     <strong class="text-danger"></strong>
@@ -32,7 +32,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" >
+                                <input id="password" type="password" class="form-control" name="password" minlength="6"  maxlength="8" required>
                                 <span class="help-block help-password">
                                     <strong class="text-danger"></strong>
                                 </span>

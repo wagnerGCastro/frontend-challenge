@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::post('/user/login','UserController@login')->name('user.login');
 
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::middleware(['check.login'])->get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');   
 
 //Rotas Protegidas

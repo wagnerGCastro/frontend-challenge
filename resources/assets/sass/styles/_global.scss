@@ -47,6 +47,23 @@ img.avatar {
 
 /** 07 - FORMS
 -------------------------------------------------------------*/
+// .btn-login-register {
+//     i { display: none;}
+// }
+
+.fa-spin {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: fa-spin;
+}
+
 .input-type-color {
     border: 0px solid #ccc;
     padding: 0px;
@@ -152,29 +169,6 @@ img.avatar {
     line-height: 1.6;
     vertical-align: top;
 }
-
-.actions {
-   // margin-top: 7px;
-}
-
-
-/** 14 - LOADERS
--------------------------------------------------------------*/
-.loader-1 {
-    position: absolute;
-    top: 48%;
-    left: 48%;
-    border: 6px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 6px solid #ccc;
-    border-right: 6px solid #ccc;
-    border-bottom: 6px solid #ccc;
-    width: 40px;
-    height: 40px;
-    -webkit-animation: spin-1 .8s linear infinite;
-    animation: spin-1 .8s linear infinite;
-}
-
 
 
 /** 15 - MEDIA QUERIES
