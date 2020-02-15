@@ -94,7 +94,7 @@ class UserController extends Controller
                 'content'       => $content
             )
         ));
-    
+       
         try {
             $contents = file_get_contents($apiUrl, false, $context);
             $response = json_decode($contents);
@@ -104,9 +104,9 @@ class UserController extends Controller
             return response()->json(formatMessage(500, $e->getMessage()), 500);
             die;
         }
-
+       
         if (isset($headers->reponse_code) && !empty($headers->reponse_code)) {
-            if ($headers->reponse_code == '401'):
+            if ($headers->reponse_code == 401):
                return response()->json(formatMessage(401, $response->message) , 401);
 
             elseif ($headers->reponse_code == 200):

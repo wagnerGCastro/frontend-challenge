@@ -29,8 +29,6 @@
         }
 
         var btnLoginReg          = $('.btn-login-register');
-        var color_name           = ( $('#color_name').length ?  $('#color_name') : '');
-        var color_hexa           = ( $('#color_hexa').length ?  $('#color_hexa') : '');
         var color_variation      = $("input[name='color_variation']");
         var colorVariationInputs = $('.colorVariationInputs');
 
@@ -69,32 +67,27 @@
            if (window.location.href == route_site.login) {
                formFields.email.val(flash.data.email);
                formFields.password.val(flash.data.password);
-               formTextVal.messageSuccess.fadeIn( function() { formTextVal.reponseBox.empty().html(flash.message); });
+               formTextVal.messageSuccess.fadeIn( () => { formTextVal.reponseBox.empty().html(flash.message); });
            }
        }
 
         // Form Login
         $('#formLogin').submit( function( e ) {
             e.preventDefault();
-            let $serialize = $(this).serialize();
 
             $.ajax({
                 url:                route_site.user_login,
                 data:                $(this).serialize()+'&apiUrl='+route.login,
-                dataType:           'application/multipart/form-data',
-                dataType:           "json",
                 type:               'POST',
                 cache:              false,
                 beforeSend:         function(){
                     clearTextValid( formTextVal );
                     onLoading(btnLoginReg);
-                    formTextVal.messageSuccess.fadeOut( function() { formTextVal.reponseBox.empty().html(''); });
+                    formTextVal.messageSuccess.fadeOut( () => { formTextVal.reponseBox.empty().html(''); });
                     if( flashlogin.length ) {
                          window.localStorage.removeItem('flashMessage');
                     }
-                    formTextVal.messageSuccess.fadeOut( function() {
-                        formTextVal.reponseBox.empty().html('');
-                    });
+                    formTextVal.messageSuccess.fadeOut( () => { formTextVal.reponseBox.empty().html(''); });
                 },
                 error:            function(xhr, status, error){
                     if(status == 'error') {
@@ -116,34 +109,45 @@
                             );
                         }
 
-                        if(xhr.responseJSON.hasOwnProperty('message')) {
-                            var msg = xhr.responseJSON.message;
-                            if (typeof msg.url !== 'undefined') {
-                                responsetMsg(formTextVal, 'alert-warning alert-success', 'alert-danger', msg.url);
+                        if (xhr.status == 400) {
+                            var strValues = '';
+                            var span      = ' <br/> <span class="glyphicon glyphicon-info-sign"></span>';
+                            var message   = xhr.responseJSON.message;
+                            var key       = Object.keys(message).length;
+                            var count     = key;
+
+                            for (const key in  message) {
+                                count--;
+                                if(count == 0) { span = ""; }
+                                strValues += message[key] + span;
+
+                                if (message.hasOwnProperty(key)) {
+                                    responsetMsg(formTextVal, 'alert-warning alert-success', 'alert-danger', strValues)
+                                    
+                                } 
                             }
                         }
+
+                        if(typeof xhr.responseJSON !== 'undefined') {
+                            if(typeof xhr.responseJSON.hasOwnProperty('message') !== 'undefined') {
+                                var msg = xhr.responseJSON.message;
+                                if (typeof msg.url !== 'undefined') {
+                                    responsetMsg(formTextVal, 'alert-warning alert-success', 'alert-danger', msg.url);
+                                }
+                            }
+                        } 
                     }
                 },
                 success:          function( response ){
-                    localStorage.setItem(Base64.encode('token'), JSON.stringify(Base64.encode(response.user)));
-
                    if (response.code == 200) {
+                        //localStorage.setItem(Base64.encode('token'), JSON.stringify(Base64.encode(response.user)));
                         clearForm(formFields);
-                        responsetMsg(
-                            formTextVal,
-                            'alert-warning alert-danger',
-                            'alert-success',
-                            'Token generate success.'
-                        );
-
-                       setTimeout(function() {   window.location.href = route_site.home;}, 3000);
+                        responsetMsg(formTextVal, 'alert-warning alert-danger', 'alert-success', 'Token generate success.');
+                        setTimeout( () => { window.location.href = route_site.home;}, 3000);
                    }
-
                 },
                 complete:       function() { offLoading(btnLoginReg, 'Login'); }
-
             });
-
         });
 
         // Form Register
@@ -165,37 +169,35 @@
                     clearTextValid(formTextVal);
                     onLoading(btnLoginReg);
                 },
-                error:              function(xhr, status, error){
+                error:              function(xhr, status, error) {
+                    if (xhr.status == 400) {
+                        let resp = xhr.responseJSON.message;
+                        if (resp.email)    { respValidation(formTextVal.email, resp.email) }
+                        if (resp.name)     { respValidation(formTextVal.name, resp.name) }
+                        if (resp.password) { respValidation(formTextVal.password, resp.password) }
 
-                    if(status == 'error') {
-                        responsetMsg(
-                            formTextVal,
-                            'alert-warning alert-success',
-                            'alert-danger',
-                            `Error: No communication with API server.`
-                        );
-
+                    } else {
+                        if(status == 'error') {
+                            responsetMsg(
+                                formTextVal,
+                                'alert-warning alert-success',
+                                'alert-danger',
+                                `Error ${xhr.status}: No communication with API server.`
+                            );
+                        }
                     }
                 },
                 success:          function(response){
-
-                    if (response.code == 400) {
-                           let resp = response.message;
-                           if (resp.email)    { respValidation(formTextVal.email, resp.email) }
-                           if (resp.name)     { respValidation(formTextVal.name, resp.name) }
-                           if (resp.password) { respValidation(formTextVal.password, resp.password) }
-                    }
-
-                  if (response.code == 201) {
+                    if (response.code == 201) {
                       clearForm(formFields);
-                      formTextVal.messageSuccess.fadeIn( function()  { formTextVal.reponseBox.empty().html(response.message); });
+                      formTextVal.messageSuccess.fadeIn( () => { formTextVal.reponseBox.empty().html(response.message); });
 
-                       setTimeout(function() {
+                       setTimeout( () => {
                            var flashMessage =  {'message': 'Thank you for registering now login to generate token', 'data': objLogin }
                            localStorage.setItem("flashMessage", Base64.encode(JSON.stringify(flashMessage)));
                            window.location.href = route_site.login;
                        }, 3000);
-                  }
+                   }
                 },
                 complete:         function() { offLoading(btnLoginReg, 'Register') }
             });
@@ -205,7 +207,7 @@
         $('.deleteProductId').click( function(e) {
             e.preventDefault();
             var idProdutct =  $(this).attr("data-id");
-            var urlDelete     =  $(this).attr("href");
+            var urlDelete  =  $(this).attr("href");
 
             $('.formProductDelete').attr("action", urlDelete);
 
@@ -290,7 +292,22 @@ function responsetMsg(formTextVal, remove_class, add_class, resp_json) {
 
 // Loading on
 function onLoading(selector) {
-    selector.delay(200).html('<i class="fa fa-spinner fa-spin"></i>  Loading...');
+    selector.delay(200).html( `
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>  Loading...
+    `);
 }
 
 // Loading off

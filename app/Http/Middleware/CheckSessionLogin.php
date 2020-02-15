@@ -16,13 +16,17 @@ class CheckSessionLogin
     public function handle($request, Closure $next)
     {
         // Retrieves the session user
-        $userAPI = (session()->get('user') !== null) ? $request->session()->get('user') : 0 ;
+        $userAPI = (session()->get('user') !== null) ? $request->session()->get('user') : "";
+        // print_r($userAPI );
 
+        // var_dump($userAPI);
+        // var_dump( empty( $userAPI ));
+     
         // Checks if you are on, if you don't have redirects
-        if ( count( $userAPI ) >= 1 ):
+        if ( !empty($userAPI) ):
             return redirect()->route('home.index');
         endif;
-
+     
         return $next($request);
     }
 }
