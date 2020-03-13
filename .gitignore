@@ -13,4 +13,5 @@ yarn-error.log
 
 .env
 
-resources/assets/js/scripts/global\.es5\.js
+resources/assets/js/scripts/temp/global\.es5\.js
+

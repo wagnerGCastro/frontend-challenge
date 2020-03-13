@@ -1,4 +1,6 @@
 
+.mr10 { margin-right: 10px }
+
 /** 01 -  NAV BAR
 -------------------------------------------------------------*/
 .navbar.navbar-modify-top {
@@ -43,14 +45,8 @@ img.avatar {
     width: 50px !important;
 }
 
-
-
-/** 07 - FORMS
+/** 02 - FORMS
 -------------------------------------------------------------*/
-// .btn-login-register {
-//     i { display: none;}
-// }
-
 .fa-spin {
     -webkit-animation: fa-spin 2s infinite linear;
     animation: fa-spin 2s infinite linear;
@@ -124,14 +120,17 @@ img.avatar {
 }
 
 
-/** 07 - TABLES
+/** 03 - TABLES
 -------------------------------------------------------------*/
 .table-hidden  {
     visibility: hidden;
 }
 
-#tabProduct {
+div#tabProduct_wrapper {
+    margin-top: 15px;
+}
 
+#tabProduct {
     .dt-button {
         background: #f5f3f3;
         padding: 5px;
@@ -170,34 +169,32 @@ img.avatar {
     vertical-align: top;
 }
 
+div#tabProduct_wrapper .dt-buttons button {
+    border: 1px solid #ccd0d2;
+    margin-right: 15px
+}
 
-/** 15 - MEDIA QUERIES
+div#tabProduct_wrapper .dt-buttons button a {
+   color: #636b6f;
+   text-decoration: none;
+}
+
+
+/** MEDIA QUERIES
 -------------------------------------------------------------*/
-
-@-webkit-keyframes spin-1 {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin-1 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-@media (min-width: 351px) {
+@media only all and (min-width: 351px) {
     div.dataTables_wrapper div.dataTables_filter input {
         min-width: 262px;
     }
 }
 
-@media (max-width: 350px) {
+@media only all and (max-width: 350px) {
     div.dataTables_wrapper div.dataTables_filter input {
         max-width: 174px;
     }
 }
 
-@media (max-width: 500px) {
+@media only all and (max-width: 500px) {
 
     .table-tabProduct {
         .btn-group > .btn:first-child {
@@ -218,7 +215,7 @@ img.avatar {
 
 }
 
-@media (max-width: 768px) {
+@media only all and (max-width: 768px) {
 
     #app-navbar-collapse {
         background: #f5f3f3;
@@ -250,4 +247,11 @@ img.avatar {
         }
     }
 }
+
+@media only all and (max-width: 991px) {
+    label#control-label { 
+        text-align: left;
+    }
+}
+
 
