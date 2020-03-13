@@ -7,12 +7,9 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">{{ $attrib->title }}</div>
-                
                         <div class="panel-body">
-                           
                             <!-- Valiadtions Messages -->
-                            @include( 'partials/alerts/alerts-messages' )
-
+                            @include( 'partials/alerts/messages')
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -25,23 +22,24 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Name</label>  
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="name" name="name" placeholder="" class="form-control" required="true" value="{{( old('name') !== null) ? old('name') : ( isset( $prod->name ) ? $prod->name : '' )}}" type="text"></div>
+                                                            <div class="input-group"><input id="name" name="name" placeholder="" class="form-control" required="true" type="text"
+                                                                 value="{{( old('name') !== null) ? old('name') : ( isset( $prod->name ) ? $prod->name : '' )}}"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Price</label>
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="price" name="price" placeholder="" class="form-control money" required="true" value="{{( old('price') !== null) ? old('price') : ( isset( $prod->price ) ? $prod->price : '' )}}" type="text"></div>
+                                                            <div class="input-group"><input id="price" name="price" placeholder="" class="form-control money" required="true" type="text"
+                                                                 value="{{( old('price') !== null) ? old('price') : ( isset( $prod->price ) ? $prod->price : '' )}}"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Description</label>
                                                         <div class="col-md-7 inputGroupContainer">
-                                                            <div class="input-group"><input id="description" name="description" placeholder="" class="form-control" required="true" value="{{( old('description') !== null) ? old('description') : ( isset( $prod->description ) ? $prod->description : '' )}}" type="text"></div>
+                                                            <div class="input-group"><input id="description" name="description" placeholder="" class="form-control" required="true" type="text"
+                                                                 value="{{( old('description') !== null) ? old('description') : ( isset( $prod->description ) ? $prod->description : '' )}}"></div>
                                                         </div>
                                                     </div>
-
-                                        
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Color variation</label>
                                                         <div class="col-md-7 inputGroupContainer">
@@ -73,25 +71,22 @@
                                                     </div>
                                                     <div class="colorVariationInputs">
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Color name</label>
-                                                            <div class="col-md-7 inputGroupContainer">
-                                                                
-                                                                <div class="input-group"><input id="color_hexa" name="color_name" placeholder="" class="form-control"  value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_name }} @elseif(old('color_name')) {{  old('color_name') }} @endif" type="text"></div>
+                                                            <label id="control-label" class="col-md-3 col-sm-8 col-xs-8 control-label">Color name</label>
+                                                            <div class="col-md-5 col-sm-8 col-xs-8 inputGroupContainer">
+                                                                <div class="input-group"><input id="color_name" name="color_name" placeholder="" class="form-control" type="text" 
+                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_name }} @elseif(old('color_name')) {{ old('color_name') }} @endif"></div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Color hexa</label>
-                                                            <div class="col-md-7 inputGroupContainer">
-                                                                <div class="input-group"><input id="color_hexa" name="color_hexa" placeholder="" class="form-control" required="true" value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_hexa }} @elseif(old('color_hexa')) {{  old('color_hexa') }} @endif" type="color"></div>
+                                                            <div class="col-md-2 col-sm-4 col-xs-4 inputGroupContainer">
+                                                                <div class="input-group"><input id="color_hexa" name="color_hexa" placeholder="" class="form-control" required="true" type="color"
+                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_hexa }} @elseif(old('color_hexa')) {{ old('color_hexa') }} @endif"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="form-group">
-                                                            <div style="margin-top: 1.5rem" class="col-md-7 col-md-offset-3 text-left">
-                                                                <button type="submit" class="btn btn-default">{{ $attrib->btnSubmit }}</button>
-                                                            </div>
+                                                        <div style="margin-top: 1.5rem" class="col-md-7 col-md-offset-3 text-left">
+                                                            <button type="submit" class="btn btn-default">{{ $attrib->btnSubmit }}</button>
                                                         </div>
+                                                    </div>
                                                 </fieldset>
                                             </form>
                                         </td>

@@ -80,7 +80,7 @@ class ProductController extends Controller
         // cURl Post API
         $result =  postCurlRequest($url,  $token,  $filtered );
 
-        // 400 -> Erros Validations Client
+        // 201 -> Sucess
         if ($result->code == '201'):
 
             \Session::flash('message.success',"Product {$request->input('name')} was successfully created");
@@ -204,14 +204,14 @@ class ProductController extends Controller
         } 
 
         // User session
-        $user   =  (object) session()->get('user');
-        $token  =  $user->api_token;
-        $url    =  "{$this->baseUrlAPI}/v1/product/{$id}";
+        $user  = (object) session()->get('user');
+        $token = $user->api_token;
+        $url   = "{$this->baseUrlAPI}/v1/product/{$id}";
 
         // Request cURL DELETE
-        $result =  deleteCurlRequest($url, $token);
+        $result = deleteCurlRequest($url, $token);
 
-        /** Status Code */
+       // Status code
         if ( isset($result->code)  ){
             // Success
             if ( $result->code == '200' ):
@@ -220,7 +220,6 @@ class ProductController extends Controller
                  return redirect()->route('product.index');
             endif;
         }
-
     }
 
     /**

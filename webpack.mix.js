@@ -21,7 +21,7 @@ mix.copy([
 
 mix.js([ 'resources/assets/js/app.js'], 'public/js');
 
-mix.babel('resources/assets/js/scripts/babel/global.es6.js','resources/assets/js/scripts/global.es5.js');
+mix.babel('resources/assets/js/scripts/global.es6.js','resources/assets/js/scripts/temp/global.es5.js');
 
 mix.scripts([
     'node_modules/es6-promise-polyfill/promise.min.js',
@@ -30,7 +30,7 @@ mix.scripts([
     'node_modules/jquery-form/dist/jquery.form.min.js',
     'node_modules/js-base64/base64.min.js',
     'node_modules/vanilla-masker/lib/vanilla-masker.js',
-    'resources/assets/js/scripts/global.es5.js',
+    'resources/assets/js/scripts/temp/global.es5.js',
 
 ], 'public/js/scripts-all.js');
 
