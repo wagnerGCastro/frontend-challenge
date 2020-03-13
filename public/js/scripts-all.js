@@ -489,8 +489,8 @@ e.root||location.href;var u=t(null);e.expose&&(self.require=u);if(e.main)return 
                 }
             }, {
                 'extend': 'csvHtml5',
-                'text': '<a class=""><span class="glyphicon glyphicon-save"></span> Expotar para csv</a>',
-                'titleAttr': 'Expotar para csv CSV'
+                'text': '<a class=""><span class="glyphicon glyphicon-save"></span> Export to csv</a>',
+                'titleAttr': 'Export to csv'
             }]
         });
     });

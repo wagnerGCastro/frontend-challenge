@@ -74,11 +74,11 @@
                                                             <label id="control-label" class="col-md-3 col-sm-8 col-xs-8 control-label">Color name</label>
                                                             <div class="col-md-5 col-sm-8 col-xs-8 inputGroupContainer">
                                                                 <div class="input-group"><input id="color_name" name="color_name" placeholder="" class="form-control" type="text" 
-                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_name }} @elseif(old('color_name')) {{  old('color_name') }} @endif"></div>
+                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_name }} @elseif(old('color_name')) {{ old('color_name') }} @endif"></div>
                                                             </div>
                                                             <div class="col-md-2 col-sm-4 col-xs-4 inputGroupContainer">
                                                                 <div class="input-group"><input id="color_hexa" name="color_hexa" placeholder="" class="form-control" required="true" type="color"
-                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_hexa }} @elseif(old('color_hexa')) {{  old('color_hexa') }} @endif"></div>
+                                                                     value="@if(count(get_object_vars($prod)) > 0) {{ $prod->color_hexa }} @elseif(old('color_hexa')) {{ old('color_hexa') }} @endif"></div>
                                                             </div>
                                                         </div>
                                                     </div>
