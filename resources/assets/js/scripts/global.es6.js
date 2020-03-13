@@ -32,18 +32,9 @@
         var color_variation      = $("input[name='color_variation']");
         var colorVariationInputs = $('.colorVariationInputs');
 
-        /*
-        |--------------------------------------------------------------------------
-        | Vanilla Masker
-        |--------------------------------------------------------------------------
-        |
-        | Mascaras
-        |
-        | https://github.com/vanilla-masker/vanilla-masker
-        | Demo page: https://vanilla-masker.github.io/vanilla-masker/demo.html
-        */
 
-         if ($('.money').length) { VMasker($('.money')).maskMoney({separator: '.'}); }
+        // Masks
+        if ($('.money').length) { VMasker($('.money')).maskMoney({separator: '.'}); }
 
 
         if ($('.click-false').length) {
@@ -76,11 +67,11 @@
             e.preventDefault();
 
             $.ajax({
-                url:                route_site.user_login,
-                data:                $(this).serialize()+'&apiUrl='+route.login,
-                type:               'POST',
-                cache:              false,
-                beforeSend:         function(){
+                url:          route_site.user_login,
+                data:         $(this).serialize()+'&apiUrl='+route.login,
+                type:         'POST',
+                cache:        false,
+                beforeSend:   function(){
                     clearTextValid( formTextVal );
                     onLoading(btnLoginReg);
                     formTextVal.messageSuccess.fadeOut( () => { formTextVal.reponseBox.empty().html(''); });
@@ -89,7 +80,7 @@
                     }
                     formTextVal.messageSuccess.fadeOut( () => { formTextVal.reponseBox.empty().html(''); });
                 },
-                error:            function(xhr, status, error){
+                error:        function(xhr, status, error){
                     if(status == 'error') {
                         if (xhr.status == 500) {
                             responsetMsg(
@@ -123,7 +114,6 @@
 
                                 if (message.hasOwnProperty(key)) {
                                     responsetMsg(formTextVal, 'alert-warning alert-success', 'alert-danger', strValues)
-                                    
                                 } 
                             }
                         }
@@ -138,9 +128,8 @@
                         } 
                     }
                 },
-                success:          function( response ){
+                success:     function( response ){
                    if (response.code == 200) {
-                        //localStorage.setItem(Base64.encode('token'), JSON.stringify(Base64.encode(response.user)));
                         clearForm(formFields);
                         responsetMsg(formTextVal, 'alert-warning alert-danger', 'alert-success', 'Token generate success.');
                         setTimeout( () => { window.location.href = route_site.home;}, 3000);
@@ -169,7 +158,7 @@
                     clearTextValid(formTextVal);
                     onLoading(btnLoginReg);
                 },
-                error:              function(xhr, status, error) {
+                error: function(xhr, status, error) {
                     if (xhr.status == 400) {
                         let resp = xhr.responseJSON.message;
                         if (resp.email)    { respValidation(formTextVal.email, resp.email) }
@@ -187,7 +176,7 @@
                         }
                     }
                 },
-                success:          function(response){
+                success: function(response){
                     if (response.code == 201) {
                       clearForm(formFields);
                       formTextVal.messageSuccess.fadeIn( () => { formTextVal.reponseBox.empty().html(response.message); });
@@ -199,7 +188,7 @@
                        }, 3000);
                    }
                 },
-                complete:         function() { offLoading(btnLoginReg, 'Register') }
+                complete: function() { offLoading(btnLoginReg, 'Register') }
             });
         });
 
@@ -216,35 +205,25 @@
             }
         });
 
-        /*
-        |--------------------------------------------------------------------------
-        | DataTables
-        |--------------------------------------------------------------------------
-        |
-        | Plugin Datables
-        | Demo page: https://datatables.net/
-        */
-
+        // Table User
         var tabUser = $('#tablUser').DataTable({});
 
+        // Table Product
         var tabProduct = $('#tabProduct').dataTable({
             dom:                     'Bfrtip',
-
             buttons:
             [
                 {
-                    'text':         '<a class="btn btn-secondary"><span class="glyphicon glyphicon-plus-sign"></span> Create product</a>',
+                    'text':         '<a class=""><span class="glyphicon glyphicon-plus-sign"></span> Create product</a>',
                     'titleAttr':    'Criar evento',
                     'action':        function(){window.location.href = route_site.product_create;}
                 }, {
                     'extend':        'csvHtml5',
-                    'text':          '<a class="btn btn-defautl"><span class="glyphicon glyphicon-save"></span> Expotar para csv</a>',
-                    'titleAttr':     'Expotar para csv CSV'
+                    'text':          '<a class=""><span class="glyphicon glyphicon-save"></span> Export to csv</a>',
+                    'titleAttr':     'Export to csv'
                 }
             ]
         });
-
-
     });
 
     /**  Fires in document when all elements are loaded  (Jquery > 3.0) */
