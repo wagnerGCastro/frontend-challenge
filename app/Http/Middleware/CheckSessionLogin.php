@@ -17,11 +17,7 @@ class CheckSessionLogin
     {
         // Retrieves the session user
         $userAPI = (session()->get('user') !== null) ? $request->session()->get('user') : "";
-        // print_r($userAPI );
 
-        // var_dump($userAPI);
-        // var_dump( empty( $userAPI ));
-     
         // Checks if you are on, if you don't have redirects
         if ( !empty($userAPI) ):
             return redirect()->route('home.index');

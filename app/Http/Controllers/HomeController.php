@@ -49,8 +49,9 @@ class HomeController extends Controller
 
         if ( ! isset($users->code) ) {
             $total->user = count($users);
+        } 
 
-        } if ( ! isset($users->code) ) {
+        if ( ! isset($users->code) ) {
              $total->product = count($products);
         }
 
