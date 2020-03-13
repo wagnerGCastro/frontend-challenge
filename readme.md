@@ -22,6 +22,6 @@
 #
 ![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/1-home.png?v=1.0)
 #
-![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/2-product-list.png?v=1.0)
+![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/2-product-list.png?v=1.1)
 #
-![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/3-product-create.png?v=1.0)
+![alt text](https://github.com/wagnerGCastro/frontend-challenge/blob/master/documentation_api/3-product-create.png?v=1.1)
