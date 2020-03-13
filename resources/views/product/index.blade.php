@@ -7,14 +7,10 @@
                 <div class="col-md-12 col-md-offset-0">
                     <div class="panel panel-default">
                         <div class="panel-heading">List of Products</div>
-                
                         <div class="panel-body">
-
-                             <!-- Succes Messages -->
-                            @include( 'partials/alerts/alerts-messages' )
-
                             <div class="loader-1 "></div>
                             <div class="table-tabProduct table-hidden">
+                               @include('partials/alerts/messages')
                                 <table class="table table-striped table-bordered dt-responsive display nowrap table-hidden " id="tabProduct"  style="width:100%">
                                     <thead>
                                         <tr>
@@ -23,7 +19,7 @@
                                             <th>Price</th>
                                             <th>Description</th>
                                             <th>Color Var.</th>
-                                            <th>Color Hexa</th>
+                                            <th>Color</th>
                                             <th>Color Name</th>
                                             <th>Actions</th>
                                         </tr>
@@ -43,11 +39,10 @@
                                                 </td>
                                                 <td>{{ ($p->color_variation == 'Y' ? $p->color_name  : '') }}</td> 
                                                 <td align="center" class="acoes">
-                                                    <a href="/product/edit/{{ $p->id_product }}" title="Editar">
+                                                    <a href="/product/edit/{{ $p->id_product }}" title="Editar" class="btn btn-xs mr10">
                                                         <span class="glyphicon glyphicon-pencil"></span>
                                                     </a>
                                                     <a data-id="{{ $p->id_product }}" href="{{ route('product.destroy', $p->id_product ) }}" title="Excluir" class="deleteProductId">
-
                                                         <!-- onclick="event.preventDefault();
                                                             if(confirm('Are you sure?')){
                                                                 document.getElementById('productDelete').submit()
